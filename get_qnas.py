@@ -10,9 +10,9 @@ class ConnectionHandler:
         self.sock.connect("tcp://127.0.0.1:5556")
 
     def __call__(self, data):
-        print('Analyzing data')
         self.sock.send_string(json.dumps(data))
         recieved = json.loads(str(self.sock.recv(), "utf-8"), encoding='utf-8', strict=False)
+        print(recieved)
         recieved = [(row[0]['tgt'], row[0]['pred_score'], row[0]['src']) for row in recieved]
         return get_with_answers(recieved)
 

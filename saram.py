@@ -101,6 +101,8 @@ class Saram:
             text += pytesseract.image_to_string(Im.open(name))
             if remove_names:
                 os.remove(name)
+        with open("out.txt", "w") as text_file:
+            print(text, file=text_file)
         return text
 
 if __name__ == '__main__':
